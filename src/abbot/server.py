@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from cgi import FieldStorage
-import forms
-import redirection
+from . import forms
+from . import redirection
 
 
 class ReCaptchaRequestHandler(BaseHTTPRequestHandler):

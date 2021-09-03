@@ -2,6 +2,7 @@
 import random
 import time
 import json
+import pkg_resources
 
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
@@ -9,8 +10,13 @@ words = [
   'how', 'that', 'they', 'by', 'can', 'their', 'it', 'I', 'word', 'said', 'if'
 ]
 
-with open('cities.json') as fp:
-  cities = json.load(fp)
+# Package resources lets us reference package files without hardcoding a location (which may vary from system to system) [1, 2].
+#
+# [1] - https://setuptools.readthedocs.io/en/latest/pkg_resources.html#resourcemanager-api
+# [2] - https://stackoverflow.com/questions/60687577/trying-to-read-json-file-within-a-python-package
+
+cities_json_string = pkg_resources.resource_string(__name__, "cities.json")
+cities = json.loads(cities_json_string)
 
 gop_members = [
   'Gary VanDeaver', 'Bryan Slaton', 'Cecil Bell Jr.', 'Keith Bell', 'Cole Hefner', 'Matt Schaefer', 'Jay Dean', 'Cody Harris',

@@ -3,8 +3,8 @@ from requests_toolbelt import MultipartEncoder
 import requests
 import re
 
-import data
-import redirection
+from . import data
+from . import redirection
 
 anonymous_form_data = data.anonymous_form()
 session = requests.Session()
