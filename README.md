@@ -10,15 +10,96 @@ https://discord.gg/PrAWWCCpDg
 
 ### Files
 
-- `server.py` is the entrypoint for the program. It creates a local web server that serves up a reCaptcha checkbox and passes the reCaptcha token to the `forms.py` file.
-- `forms.py` contains the functions used to interact with the forms on the target's website.
-- `data.py` contains generators for realistic randomized data.
-- `redirection.py` is used to redirect `prolifewhistleblower.com` to `127.0.0.1`
-- `captcha.html` is our simple reCaptcha checkbox page.
-- `requirements.txt` contains the required Python3 packages to be installed
-- `.style.yapf` is the configuration file for the yapf formatter. Please run this when contributing.
+- `src/abbot/server.py` is the entrypoint for the program. It creates a local web server that serves up a reCaptcha checkbox and passes the reCaptcha token to the `forms.py` file.
+- `src/abbot/forms.py` contains the functions used to interact with the forms on the target's website.
+- `src/abbot/data.py` contains generators for realistic randomized data.
+- `src/abbot/redirection.py` is used to redirect `prolifewhistleblower.com` to `127.0.0.1`
+- `src/abbot/captcha.html` is our simple reCaptcha checkbox page.
+- `src/abbot/requirements.txt` contains the required Python3 packages to be installed
+- `src/abbot/.style.yapf` is the configuration file for the yapf formatter. Please run this when contributing.
+
+
 
 ## How to use the project
+
+# AbBOT
+
+req.py is selenium python bot.
+sc.js is a the base of the ios shortcut
+
+
+## Installation 
+
+[Nix is a package management system](https://nixos.org/explore.html) that allows you to hermentically manage entire systems (instead of using PIP for python, cargo for rust, etc, which would potentially risk system-breaking modifications. Using PIP without PIPenv or the equivalent can result in overwritten dependencies and random broken programs on your computer).
+
+
+### Step 0: (Windows-only)
+
+
+Windows users will need to install [Windows Subsystem for Linux 2](https://docs.microsoft.com/en-us/windows/wsl/about) (aka WSL). Using WSL will help keep us all in the same POSIX-like family (i.e. MacOS, Windows, Linux users can all work with a common interface).
+
+### Step 1: Install Nix (2.4 or above)
+
+#### Step 1.1: Install Nix
+I use the Nix flakes installer at [https://github.com/numtide/nix-flakes-installer](https://github.com/numtide/nix-flakes-installer)
+
+```bash
+sh <(curl -L https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.4pre20210823_af94b54/install) daemon
+```
+
+*Warning*: One should always look at the source of a script before curl + sh'ing it. This one is safe, but you should verify for yourself :). 
+
+#### Step 1.2: Allow Nix Flakes
+
+Flakes a nice way of declaritively interacting with Nix, but since they're experimental, we have to tell Nix explicitly that we want to use them.
+
+```bash
+sudo echo "# Configuration for the Nix package manager.
+#
+# To read detailed explanations about these options, please see [1].
+# [1] - https://nixos.org/manual/nix/unstable/command-ref/conf-file.html
+#
+# Lets us use the 'nix' command and 'flakes' [2]
+# [2] - https://nixos.wiki/wiki/Flakes
+#
+experimental-features = nix-command flakes
+
+# Good for development
+keep-outputs = true
+
+# The default
+keep-derivations = true
+" >> /etc/nix/nix.conf
+```
+
+### Step 3: Checkout the Git repo
+
+#### Step 3.1: Install Git
+If you don't already have Git installed, no worries! Just run the following command:
+
+```bash
+nix-env -iA nixpkgs.git
+```
+
+#### Step 3.2: Checkout the `AbBot` package 
+
+```bash
+git clone https://github.com/SeanDaBlack/AbBOT.git
+cd AbBot
+```
+
+### Step 4: Build the application
+
+From the command line, in the AbBot directory, run the following command: 
+
+`nix build`
+
+The binary to run now exists in the `result` directory.
+
+### Step 5: Run that sucker.
+
+`./result/bin/abbot`
+
 
 ### Clone the repo
 
