@@ -73,25 +73,8 @@
             ];
           };
 
-          
-
         in {            
             packages.${pname} = app;
-
-            packages.${system}.docker = pkgs.dockerTools.buildImage {
-              name = "${pname}";
-              tag = "latest";
-
-              # Setting 'created' to 'now' will correctly set the file's creation date
-              # (instead of setting it to Unix epoch + 1). This is impure, but fine for our purposes.
-              created = "now";
-              config = {
-                Cmd = [ ];
-                # Runs 'abbot' by default.
-                Entrypoint = [ "${app.outPath}/bin/${app.pname}" ];
-              };
-            };
-
             defaultApp = app;
 
             defaultPackage = self.packages.${system}.${pname};
