@@ -18,10 +18,12 @@ Windows Subsystem for Linux (WSL) basically lets Windows pretend it's Linux, so 
 
 
 
-- Step 1. Open Powershell
+- Step 1. On your keyboard, hit the 'Windows Key' + 'R'.g
+
+- Step 1.1. Type the word "Powershell" then hit enter.
 
 
-The 'Shell' is a fancy program that lets us directly tell the computer what we want it do. 
+PowerShell (and more generally, a ['shell'](https://en.wikipedia.org/wiki/Shell_(computing))) is a fancy program that lets us directly tell the computer what we want it do. 
 
 
 - Step 2. Type in the following command into Powershell, then hit "Enter"
